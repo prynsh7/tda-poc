@@ -1,25 +1,40 @@
+import { ICONS } from "@/assets/icons";
+import { Avatar } from "antd";
 import React from "react";
 
-type Props = {};
 
-const Topbar = (props: Props) => {
+const Topbar = (props: any) => {
+  const { collapsed, setCollapsed } = props;
   return (
     <div
       className={`relative  flex justify-between items-center w-full h-[60px] z-10`}
     >
-      <div></div>
+      <div className={`flex  justify-start`}>
+        <div
+          className="rounded-[4px] shadow-sm bg-primary p-2 h-[35px] w-[35px] border-[1px] border-primary flex items-center justify-center cursor-pointer"
+          onClick={() => {
+            setCollapsed(!collapsed);
+          }}
+        >
+          {collapsed ? (
+            <ICONS.SIDEBAR_CROSS color="white" />
+          ) : (
+            <ICONS.SIDEBAR_HAMBURGER color="white" />
+          )}
+        </div>
+      </div>
       <div className={`flex gap-4 h-full items-center  text-text_high`}>
-        {/* <div className="relative p-2">
-          <div className="absolute -top-0.5 -right-0.5 w-[18px] h-[18px] bg-[#ffffff1A] flex items-center justify-center text-[white] rounded-full">
-            6
-          </div>
-        </div> */}
+
         <div className="w-[1px] h-[40px] bg-border_light"></div>
         <div className="flex gap-3 items-center">
-          <div className="rounded-full h-[32px] w-[32px] bg-gray-200"></div>
+          <Avatar 
+            size={45} 
+            src="https://avatars.githubusercontent.com/u/74198584?v=4" 
+            alt="Priyansh R"
+          />
           <div>
-            <h6 className="text-sm">Priyansh R</h6>
-            <p className="text-xs">Admin</p>
+            <h6 className="text-sm text-black">Priyansh R</h6>
+            <p className="text-xs text-gray-700">Admin</p>
           </div>
         </div>
       </div>

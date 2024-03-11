@@ -9,13 +9,15 @@ import upload from "./upload.svg";
 import add from "./add.svg";
 import cross from "./cross.svg";
 import { IoMdClose } from "react-icons/io";
-import { BsList } from "react-icons/bs";
+import { BsArrowLeft, BsList } from "react-icons/bs";
 import { MdDashboard, MdPerson, MdSettings } from "react-icons/md";
+import { PiBuildingsDuotone, PiWarehouse, PiHouseLineFill,  } from "react-icons/pi";
+import { IoHome } from "react-icons/io5";
 
 export const ICONS = {
   SIDEBAR_DASHBOARD: MdDashboard,
   SIDEBAR_CROSS: IoMdClose,
-  SIDEBAR_HAMBURGER: BsList,
+  SIDEBAR_HAMBURGER: BsArrowLeft,
   SIDEBAR_REQUESTS: MdPerson,
   SIDEBAR_PROFILE: MdPerson,
   SIDEBAR_SETTINGS: MdSettings,
@@ -23,4 +25,8 @@ export const ICONS = {
   UPLOAD: upload,
   ADD: add,
   CROSS: cross,
+  HOME_1: PiBuildingsDuotone,
+  HOME_2: PiWarehouse,
+  HOME_3: PiHouseLineFill,
+  HOME_4: IoHome,
 };

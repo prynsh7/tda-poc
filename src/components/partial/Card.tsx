@@ -19,7 +19,7 @@ const Card = ({
   className,
   style,
 }: Props) => {
-  const classNames = `bg-[#FFFFFF05] ${rounded ? "rounded-md" : ""} ${
+  const classNames = `shadow-md border-[1px] border-gray-200 bg-[#FFFFFF05] ${rounded ? "rounded-md" : ""} ${
     shadow ? "shadow-sm " : ""
   } ${padding ? "p-4 " : ""} ${border ? "border " : ""} ${className || ""} `;
   return (

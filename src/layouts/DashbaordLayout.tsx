@@ -2,10 +2,11 @@
 
 import { Menu } from "antd";
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Topbar from "../components/partial/Topbar";
 import { ICONS } from "../assets/icons";
 import type { MenuProps } from "antd";
+import { BsDot } from "react-icons/bs";
 
 type Props = {
   children?: React.ReactNode;
@@ -21,7 +22,7 @@ const DashboardLayout = (props: Props) => {
     // navigate(keyRouteMap[e.key])
   };
 
-  // const location = useRouter();
+  const location = usePathname();
   // console.log(location.pathname);
 
   type MenuItem = Required<MenuProps>["items"][number];
@@ -51,7 +52,7 @@ const DashboardLayout = (props: Props) => {
       key: "1",
       icon: ICONS.SIDEBAR_DASHBOARD,
       label: "Dashboard",
-      path: "/",
+      path: "/dashboard",
     },
     {
       key: "1",
@@ -65,7 +66,7 @@ const DashboardLayout = (props: Props) => {
       label: "Settings",
       path: "/headings",
     },
-  
+
     // {
     //   key: "2",
     //   icon: (
@@ -142,26 +143,22 @@ const DashboardLayout = (props: Props) => {
       <ICONS.SIDEBAR_DASHBOARD />,
       "/dashboard",
       `my-1 flex gap-2 py-3 cursor-pointer rounded-0 m-0 rounded-none px-6 ${
-        location.pathname == "/dashboard"
+        location == "/dashboard"
           ? "bg-bg_light border-l-4 border-primary"
           : "text-black"
       } ${collapsed ? "" : "pl-[20px]"}`
     ),
-    getItem(
-      "Requests",
-      "2",
-      <ICONS.SIDEBAR_REQUESTS />,
-      "",
-      "",
-      [getItem("Requests", "2-1"), getItem("Completed", "2-2")]
-    ),
+    getItem("Requests", "2", <ICONS.SIDEBAR_REQUESTS />, "", "", [
+      getItem("Requests", "2-1"),
+      getItem("Completed", "2-2"),
+    ]),
     getItem(
       "Offers",
       "3",
-      <ICONS.SIDEBAR_OFFERS/>,
+      <ICONS.SIDEBAR_OFFERS />,
       "/offers",
       `my-1 flex gap-2 py-3 cursor-pointer px-6 ${
-        location.pathname == "/offers"
+        location == "/offers"
           ? "bg-bg_light border-l-4 border-primary"
           : "text-black"
       } ${collapsed ? "" : "pl-[20px]"}`
@@ -169,10 +166,10 @@ const DashboardLayout = (props: Props) => {
     getItem(
       "Profile",
       "4",
-      <ICONS.SIDEBAR_PROFILE/>,
+      <ICONS.SIDEBAR_PROFILE />,
       "/profile",
       `my-1 flex gap-2 py-3 cursor-pointer px-6 ${
-        location.pathname == "/profile"
+        location == "/profile"
           ? "bg-bg_light border-l-4 border-primary"
           : "text-black"
       } ${collapsed ? "" : "pl-[20px]"}`
@@ -180,10 +177,10 @@ const DashboardLayout = (props: Props) => {
     getItem(
       "Settings",
       "5",
-      <ICONS.SIDEBAR_SETTINGS/>,
+      <ICONS.SIDEBAR_SETTINGS />,
       "/settings",
       `my-1 flex gap-2 py-3 cursor-pointer px-6 ${
-        location.pathname == "/settings"
+        location == "/settings"
           ? "bg-bg_light border-l-4 border-primary"
           : "text-black"
       } ${collapsed ? "" : "pl-[20px]"}`
@@ -199,8 +196,8 @@ const DashboardLayout = (props: Props) => {
 
   return (
     <div>
-      <div className="flex bg-dark max-h-[100vh] w-[100vw]">
-        <div className="bg-[#FFFFFF0F] max-h-[100vh] border-solid border-r-[2px] border-[#EFEFEF0F]">
+      <div className="flex  max-h-[100vh] w-[100vw]">
+        <div className="bg-dark max-h-[100vh] border-solid border-r-[2px] border-[#EFEFEF0F]">
           <Menu
             onClick={onClickMenuItem}
             defaultSelectedKeys={["1"]}
@@ -221,32 +218,21 @@ const DashboardLayout = (props: Props) => {
             inlineCollapsed={collapsed}
           >
             <div
-              className={`flex mt-2 justify-start ${
+              className={`flex h-[60px] mt-3  justify-start  items-center gap-3 mb-5 ${
                 collapsed ? "pl-[14px]" : "pl-[14px]"
               }`}
             >
-              <div
-                className="rounded-[12px] p-2 h-[35px] w-[35px] border border-border_light flex items-center justify-center cursor-pointer"
-                onClick={() => {
-                  setCollapsed(!collapsed);
-                }}
-              >
-                {collapsed ? (
-                  <ICONS.SIDEBAR_CROSS color="white" />
-                ) : (
-                  <ICONS.SIDEBAR_HAMBURGER color="white" />
-                )}
-              </div>
-            </div>
-            <div
-              className={`flex h-[60px] justify-start mt-8 items-center gap-3 mb-5 ${
-                collapsed ? "pl-[14px]" : "pl-[14px]"
-              }`}
-            >
-              {/* <div className="h-[34px] w-[34px] bg-primary"></div> */}
+              
+
               {collapsed ? null : (
-                <div className=" w-full text-white text-2xl truncate">TDA</div>
+                <div className=" w-full text-white text-2xl font-[700] truncate text-center justify-center items-end flex ">
+                  <p className="tracking-widest">TDA </p>
+                  <BsDot size={30} color="#6565DF" />
+                </div>
               )}
+
+
+
             </div>
 
             {items.map((item) => (
@@ -255,35 +241,42 @@ const DashboardLayout = (props: Props) => {
                   navigate.push(item.path);
                 }}
                 className={`my-1 flex gap-2 py-3 cursor-pointer px-6 hover:bg-bg_light hover:border-l-4 hover:border-primary hover:pl-[16px]  ${
-                  location.pathname == item.path
-                    ? "bg-bg_light border-l-4 border-primary pl-[16px]"
+                  location == item.path
+                    ? "bg-[#FFFFFF1A] border-l-4 border-primary pl-[16px]"
                     : "text-black pl-[20px]"
                 } ${collapsed ? "" : ""}}`}
               >
-                
-                {<item.icon style={{
-                  width: "22px",
-                  height: "22px"
-                }} color="#fff" />}
                 {
-                  collapsed ? null : <div className="text-sm truncate text-[#fff]">{item.label}</div>
+                  <item.icon
+                    style={{
+                      width: "22px",
+                      height: "22px",
+                    }}
+                    color={location == item.path ? "#6565DF" : "#fff"}
+                  />
                 }
+                {collapsed ? null : (
+                  <div className="text-sm truncate text-[#fff]">
+                    {item.label}
+                  </div>
+                )}
               </div>
             ))}
           </Menu>
         </div>
         <div
           className={`grow flex flex-col maxh-h-[100vh] flex-1 w-[100%] bg-main_bg relative ${
-            location.pathname == "/profile" ? "" : ""
+            location == "/profile" ? "" : ""
           }`}
         >
-          <div className={`p-3 bg-[#FFFFFF0F] border-b-[2px] border-[#FFFFFF0F]`}>
-            <Topbar />
+          <div
+            className={`p-3 px-6 bg-[#FFFFFF] border-b-[1px] border-gray-200 shadow-xl`}
+          >
+            <Topbar collapsed={collapsed} setCollapsed={setCollapsed} />
           </div>
 
-          <div className="p-3 flex-1 overflow-y-auto">
-
-          {authState && props.children}
+          <div className="p-6 bg-gray-p-100 flex-1 overflow-y-auto">
+            {authState && props.children}
           </div>
         </div>
       </div>
