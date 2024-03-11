@@ -181,7 +181,7 @@ export default function Home() {
                     <p className="font-[600] text-lg text-black">Properties</p>
                   </div>
 
-                  <div className="relative mx-auto">
+                  <div className="relative mx-auto flex items-center justify-center">
                     <DoughnutChart />
                     <div className="absolute flex flex-col translate-x-[-50%] left-[50%] translate-y-[-50%] top-[50%] ">
                       <h2 className="text-black font-[500] text-center text-md">
