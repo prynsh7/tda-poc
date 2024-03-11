@@ -39,19 +39,19 @@ const buildingData = [
   {
     bg: "bg-gradient-to-r from-[#D36565] to-red-500",
     icon: ICONS.HOME_1,
-    title: "Total Condo",
+    title: "Total Condos",
     value: buildingSalesData.condo,
   },
   {
     bg: "bg-gradient-to-r from-red-500 to-pink-600",
     icon: ICONS.HOME_2,
-    title: "Total House",
+    title: "Total Houses",
     value: buildingSalesData.house,
   },
   {
     bg: "bg-gradient-to-r from-pink-600 to-[#BF4646]",
     icon: ICONS.HOME_3,
-    title: "Total Town House",
+    title: "Total Town Houses",
     value: buildingSalesData.townhouse,
   },
   // {
@@ -181,7 +181,7 @@ export default function Home() {
                     <p className="font-[600] text-lg text-black">Properties</p>
                   </div>
 
-                  <div className="relative mx-auto">
+                  <div className="relative mx-auto flex items-center justify-center">
                     <DoughnutChart />
                     <div className="absolute flex flex-col translate-x-[-50%] left-[50%] translate-y-[-50%] top-[50%] ">
                       <h2 className="text-black font-[500] text-center text-md">
